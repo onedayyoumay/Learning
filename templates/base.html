@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+{% load static %}
+{% load poll_extras %}
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head profile="http://gmpg.org/xfn/11">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="profile" href="http://gmpg.org/xfn/11" />
+    <link rel="alternate" type="application/rss+xml" title="Templatelite Theme Preview RSS Feed" href="" />
+    <link rel="pingback" href="" />
+    <link rel="stylesheet" href="{% get_static_prefix %}css/base.css" type="text/css" media="all" />
+    <title>Peaceful garden</title>
+    <link rel="alternate" type="application/rss+xml" title="Templatelite Theme Preview &raquo; Feed" href="" />
+    <link rel="alternate" type="application/rss+xml" title="Templatelite Theme Preview &raquo; Comments Feed" href="" />
+    <script type='text/javascript' src='http://jquery-repository.googlecode.com/files/jquery-1.7.1.js'></script>
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="" />
+    <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="" />
+    <meta name="generator" content="Blog, Python, coding, new" />
+    <!-- begin gallery scripts -->
+    <link rel="stylesheet" href="{% get_static_prefix %}css/jd.gallery2.css" type="text/css" media="screen" charset="utf-8"/>
+    <link rel="stylesheet" href="{% get_static_prefix %}css/jd.gallery.css" type="text/css" media="screen" charset="utf-8"/>
+    <script type="text/javascript" src="{% get_static_prefix %}js/mootools.v1.11.js"></script>
+    <script type="text/javascript" src="http://demo.templatelite.com/wp-content/plugins/featured-content-gallery/scripts/jd.gallery.js.php"></script>
+    <script type="text/javascript" src="{% get_static_prefix %}js/jd.gallery.transitions.js"></script>
+    <!-- end gallery scripts -->
+    <style type="text/css">#content{float:left;}</style><link href="{% get_static_prefix %}css/safari.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="{% get_static_prefix %}js/templatelite-general.js"></script>
+    <script type="text/javascript" src="{% get_static_prefix %}js/custom.js"></script><!--[if lte IE 7]>
+    <style type="text/css">#sidebar,#sidebar1{margin-top:0;}</style><![endif]-->
+</head>
+<body class="home blog">
+<div id="bg_top"><div id="bg_btm"><div id="base"><div id="base_top"><div id="base_btm">
+<div id="header">
+    <div id="menubar">
+        <div class="menu">
+            <ul>
+                <li class=""><a href="">Про меня</a></li>
+                <li class=""><a href="">Контакты</a></li>
+                <li class="page_item page-item-2"><a href="">Менюха</a>
+                    <ul class='children'>
+                        <li class="page_item page-item-11"><a href="">Что и как</a>
+                            <ul class='children'>
+                                <li class=""><a href="">Вот так</a></li>
+                            </ul>
+                        </li>
+                        <li class=""><a href="">Увлечения</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <a href="" title="Home" class="home"></a>
+    <a href="" title="RSS Feed" class="rss"></a>
+</div>
+<div id="container"><div id="container_top"><div id="container_btm"><div id="content">
+    <div id="featured">
+        <script type="text/javascript">
+            function startGallery() {
+                var myGallery = new gallery($('myGallery'), {
+                    timed: true
+                });
+            }
+            window.addEvent('domready',startGallery);
+        </script>
+        <div id="myGallery">
+            <div class="imageElement">
+                <h2>Peaceful garden</h2>
+                <p>Beautiful place to live</p>
+                <a href="" title="Read More" class="open"></a>
+                <img src="{% get_static_prefix %}images/fcg1.gif" alt="" class="full" />
+                <img src="{% get_static_prefix %}images/fcg1.gif" alt="" class="thumbnail" />
+            </div>
+            <div class="imageElement">
+                <h2>Peaceful garden</h2>
+                <p>Beautiful place to live</p>
+                <a href="" title="Read More" class="open"></a>
+                <img src="{% get_static_prefix %}images/fcg2.gif" alt="" class="full" />
+                <img src="{% get_static_prefix %}images/fcg2.gif" alt="" class="thumbnail" />
+            </div>
+        </div>
+
+    </div>
+    <div class="spacer"></div>
+    {% block content %}
+    {% if posts %}
+    {% for post in posts %}
+    <div id="postbox" class="post type-post status-publish format-standard sticky hentry category-about-this-theme postbox">
+        <div class="postbox2">
+            <div class="postbox3">
+                <div class="post_title">
+                    <h2><a href="{{ post.get_absolute_url }}" rel="bookmark" title="">{{ post.title }}</a></h2>
+                </div>
+                <div class="post_date_author"><span class="post_date">{{ post.posted }}</span><span class="post_author">By <a href="" title="Posts by admin" rel="author">Me</a></span></div>
+                <div class="clear"></div>
+                <div class="entry">
+                    {% filter bbcode %}
+                    {{ post.body }}
+                    {% endfilter %}
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div><!-- #postbox3, #postbox2,#postbox -->
+        <div class="info">
+            <span class="">Запись: <a href="{{ post.get_absolute_url }}" title="" rel="Read more">Читать дальше</a></span>
+            <span class="info_comment"><a href="{{ post.get_absolute_url }}" title="Оставить коментарий">Оставить коментарий</a></span>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+        <div class="post_title">
+            <h2>There are no posts.</h2>
+        </div>
+    {% endif %}
+    {% endblock %}
+    <div class="navigation">
+        <div class="alignleft"><a href="" >&laquo; Ранние записи</a></div>
+        <div class="alignright"></div>
+    </div>
+
+</div>
+<div id="sidebar">
+    <div id="sidebar1">
+    <ul>
+        <li class="pagenav">
+            <h4>Категории</h4>
+            <ul>
+                {% if categories %}
+                {% for category in categories %}
+                <li><a href="{{ category.get_absolute_url }}">{{ category.title }}</a></li>
+                {% endfor %}
+                {% else %}
+                <li>Нет категорий.</li>
+                {% endif %}
+            </ul>
+        </li>
+    </ul>
+    </div>
+    <div id="sidebar2">
+        <div id="mainsearch">
+            <form class="mainsearch" action="http://google.com/" method="get">
+                <input class="keyword" type="text" value="" name="s" id="s" />
+                <input class="submit" value="" type="submit"/>
+            </form>
+        </div>
+        <ul>
+            <li>
+                <h4>Записи</h4>
+                <ul>
+                    {% if posts %}
+                    {% for post in posts %}
+                    <li><a href='{{ post.get_absolute_url }}' title='{{ post.title }}'>{{ post.title }}</a></li>
+                    {% endfor %}
+                    {% else %}
+                    <li>Нет сообщений.</li>
+                    {% endif %}
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div><!-- #footer start-->
+<div class="clear"></div>
+</div></div></div><!--  #container_btm, #container_top, #container -->
+<div id="footer">
+    <div id="footer_credit">
+        An peaceful garden for you
+    </div>
+</div><!-- #footer-->
+</div></div></div><!-- #base_btm ,#base_top, #base -->
+</div><!-- #bg_btm -->
+</div><!-- #bg_top -->
+<div class="hide-div"></div>
+</body>
+</html>

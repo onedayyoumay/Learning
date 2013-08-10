@@ -1,0 +1,52 @@
+body{
+    background:#000000 url(/static/images/bg_repeat.jpg) repeat-y center top;
+}
+#bg_top{
+    background:url(/static/images/bg_top.jpg) no-repeat center top;
+}
+#bg_btm{
+    background:url(/static/images/bg_btm.png) no-repeat center bottom;
+}
+#base_btm{
+    background:url(/static/images/bg_footer.jpg) no-repeat center bottom;
+}
+#header{
+    background:url(/static/images/bg_header.jpg) no-repeat center top;
+}
+#container{
+    background:url(/static/images/bg_container_top.jpg) no-repeat center top;
+}
+#content{
+    margin-bottom:15px;
+}
+#sidebar{
+    margin-bottom:100px;
+}
+
+#blog_name {
+    text-shadow:2px 2px 3px #000000;
+}
+#blog_name a, #blog_name a:hover {
+    color:#ffffff;
+}
+#blog_desc {
+    color:#CBCDB6;
+    text-shadow:1px 1px 2px #000000;
+}
+#header .rss:hover{
+    background:url(/static/images/bg_rss_hover.jpg) no-repeat;
+}
+
+.mainsearch {
+    background:url(/static/images/bg_search.jpg) no-repeat left top;
+}
+.mainsearch_hover{
+    background:none;
+}
+#sidebar1 a:hover {color:#A0410A;text-decoration:underline;}
+#sidebar2 a:hover {color:#482828;text-decoration:underline;}
+
+#footer_credit{
+    left:165px;
+    width:400px;
+}

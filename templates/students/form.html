@@ -1,0 +1,10 @@
+{{ twbsop|default:"<div class='container'><div class='hero-unit'>" }}
+<form action="{{ url }}" class="form-horizontal" method="post" enctype={{ enctype }}>
+    {% csrf_token %}
+    <fieldset>
+        <legend>{{ form_name }}</legend>
+        {{ form.as_p }}
+        <button class="btn btn-large btn-primary" type="submit">{{ form_button }}</button>
+    </fieldset>
+</form>
+{{ twbscl|default:"</div></div>" }}

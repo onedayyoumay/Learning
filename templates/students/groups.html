@@ -1,0 +1,48 @@
+{% extends 'students/base.html' %}
+{% load core_extras %}
+{% block title %}View - список групп{% endblock %}
+{% block content %}
+<div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand" href="#">Контекст процессор {{ setings.LANGUAGE_CODE }}</a>
+                <a class="brand" href="add_group/">Создать группу</a>
+                <a class="brand" href="add_student/">Создать студента</a>
+            </div>
+        </div>
+    </div>
+<div class="container">
+<div class="hero-unit">
+<table class="table">
+    <thead>
+    <tr>
+        <th>Группа</th>
+        <th>Удалить</th>
+        <th>Редактировать</th>
+        <th>Редактировать в админке</th>
+        <th>Староста</th>
+        <th>Количество человек</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for group in groups %}
+    <tr>
+        <td><a href='getgroup/?g_num={{group.id}}'>{{ group.group_number }}</a></td>
+        <td><a href='delete/?type=Group&nmb={{group.id}}'>Удалить</a></td>
+        <td><a href='m_group/?g_nmb={{group.id}}'>Редактировать</a></td>
+        <td><a href="http://{{ request.get_host }}{% g_tag group.id %}">Редактировать в админке</a></td>
+        </td>
+        <td>{{ group.full_name }}</td>
+        <td>{{ group.amount }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% if user.is_authenticated %}
+    <p>You are loged in...</p>
+    {% else %}
+    {% include "students/form.html" with url="/login/" form_name="Логин" form_button="Логин" encrypte=''   twbsop=" " twbscl=" " %}
+{% endif %}
+</div>
+</div>
+{% endblock %}

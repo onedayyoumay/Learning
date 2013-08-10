@@ -1,0 +1,5 @@
+{% extends 'students/base.html' %}
+{% block title %}View - создание группы{% endblock %}
+{% block content %}
+{% include "students/form.html" with url="/students/add_group/" form_name="Создать группу" form_button="Создать" enctype="multipart/form-data" %}
+{% endblock %}

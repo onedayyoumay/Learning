@@ -1,0 +1,12 @@
+<dl id="comments">
+    {% for comment in comment_list %}
+        <div id="postmetadata">
+            <dt id="{{ comment.id }}">
+                <h3 id="reply-title">{{ comment.submit_date }} - {{ comment.name }}</h3>
+            </dt>
+            <dd>
+                {{ comment.comment }}
+            </dd>
+        </div>
+    {% endfor %}
+</dl>

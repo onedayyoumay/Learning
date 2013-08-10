@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Title of the document</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% get_static_prefix %}todo/bootstrap.css" type="text/css" media="all" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script></javascript>
+    <script type="text/javascript">
+$.ajaxSetup({
+     beforeSend: function(xhr, settings) {
+         function getCookie(name) {
+             var cookieValue = null;
+             if (document.cookie && document.cookie != '') {
+                 var cookies = document.cookie.split(';');
+                 for (var i = 0; i < cookies.length; i++) {
+                     var cookie = jQuery.trim(cookies[i]);
+                     // Does this cookie string begin with the name we want?
+                 if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                     cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                     break;
+                 }
+             }
+         }
+         return cookieValue;
+         }
+         if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+             // Only send the token to relative URLs i.e. locally.
+             xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+         }
+     }
+});
+$(function(){
+    $('.testForm').click(function(){
+        if($(this).is(":checked")) {
+            $.ajax({
+                type:"POST",
+                url:"/tasks/finish/",
+                data: { 'id': $(this).val()},
+                success: function(results){alert(results);}
+            }),
+            $(this).attr("disabled", true);
+        }
+    });
+});
+</script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand" href="#">Todo tasks</a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="hero-unit">
+            <h3>List of tasks</h3>
+            {% for post in tasks %}
+                <label class="checkbox"><input type="checkbox" class='testForm' value="{{ post.id }}" {% if post.status %}disabled="true" checked{% else %}{% endif %}>{{ post.task }}</label>
+            {% endfor %}
+            <form action="/tasks/add/" class="form-horizontal" method="post">{% csrf_token %}
+                <fieldset>
+                    <legend>Add task</legend>
+                    {{ form.as_p }}
+                    <button class="btn btn-large btn-primary" type="submit">Add task</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

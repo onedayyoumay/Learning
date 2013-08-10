@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+{% load comments %}
+    <div id="respond">
+        <form action="{% comment_form_target %}" method="post" id="commentform">{% csrf_token %}
+            {% if next %}<div><input type="hidden" name="next" value="{{ next }}" /></div>{% endif %}
+            {% if form.errors %}
+                <h3 id="reply-title">{% blocktrans count counter=form.errors|length %}Please correct the error below{% plural %}Please correct the errors below{% endblocktrans %}</h3>
+            {% else %}
+                <h3 id="reply-title">{% trans "Preview your comment" %} {% trans "and" %} <input type="submit" name="submit" value="{% trans "Post your comment" %}" id="submit"/> {% trans "or make changes" %}:</h3>
+                <blockquote>{{ name }}</blockquote>
+            {% endif %}
+            {% for field in form %}
+                {% if field.is_hidden %}
+                    <div>{{ field }}</div>
+                {% else %}
+                    <p {% if field.errors %} class="error" {% endif %}{% ifequal field.name "honeypot" %} style="display:none;"{% endifequal %}>
+                        {{ field.label_tag }}: {% if field.errors %}{{ field.errors }}{% endif %} {{ field }}
+                    </p>
+                {% endif %}
+            {% endfor %}
+            <p class="submit">
+            <input type="submit" name="submit" class="submit-post" value="{% trans "Post" %}" id="submit"/>
+            <input type="submit" name="preview" class="submit-preview" value="{% trans "Preview" %}" id="submit"/>
+            </p>
+        </form>
+    </div>
+{% endblock %}

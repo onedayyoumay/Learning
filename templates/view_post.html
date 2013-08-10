@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load comments %}
+{% load poll_extras %}
+{% block content %}
+    <div id="" class="post type-post status-publish format-standard hentry category-about-this-theme postbox">
+        <div class="postbox2">
+            <div class="postbox3">
+                <div class="post_title">
+                    <h2><a href="{{ post.get_absolute_url }}" rel="bookmark" title="">{{ post.title }}</a></h2>
+                </div>
+                <div class="post_date_author"><span class="post_date">{{ post.posted }}</span><span class="post_author">By <a href="" title="Posts by admin" rel="author">Me</a></span></div>
+                <div class="clear"></div>
+                <div class="entry">
+                    {% filter youtube %}
+                    {% filter bbcode %}
+                    {{ post.body }}
+                    {% endfilter %}
+                    {% endfilter %}
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="accordion">
+    <div class="post_title"><h4>Мнения</h4></div>
+    <div>
+        {% render_comment_list for post %}
+    </div>
+    <div id="respond">
+        {% get_comment_form for post as form %}
+        <h3 id="reply-title">Поделиться своим мнением</h3>
+        <form action="{% comment_form_target %}" method="post" id="commentform">
+            {% csrf_token %}
+            <p class="comment-notes">Ваш почтовый адресс не будет опубликован</p>
+            <p class="comment-form-author"><label for="id_name">Имя</label>{{ form.name }}</p>
+            <p class="comment-form-email"><label for="id_email">Почтовый адресс</label>{{ form.email }}</p>
+            <p class="comment-form-url"><label for="id_url">Ваш сайт</label>{{ form.url }}</p>
+            <p class="comment-form-comment"><label for="id_comment">Мнение</label>{{ form.comment }}</p>
+            <p class="comment-notes">Антиспам, оставить пустым: {{ form.honeypot }}</p>
+            {{ form.content_type }}
+            {{ form.object_pk }}
+            {{ form.timestamp }}
+            {{ form.security_hash }}
+            <tr>
+                <td colspan="2">
+                    <input type="submit" name="submit" id="submit" value="Опубликовать">
+                    <input type="submit" name="preview" id="submit" value="Предпросмотр">
+                </td>
+            </tr>
+        </form>
+    </div>
+</div>
+{% endblock %}

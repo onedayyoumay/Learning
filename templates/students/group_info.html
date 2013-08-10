@@ -1,0 +1,52 @@
+{% extends 'students/base.html' %}
+{% load thumbnail %}
+{% load core_extras %}
+{% block title %}View - список студентов группы{% endblock %}
+{% block content %}
+    {% for student in students.object_list %}
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand" href="http://{{ request.get_host }}{% s_tag student.id %}">Редактировать в админке</a>
+                <a class="brand" href='m_student/?s_nmb={{ student.id }}'>Редактировать</a>
+                <a class="brand" href='http://{{ request.get_host }}/students/delete/?type=Student&nmb={{ student.id }}'>Удалить</a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+    <div class="hero-unit">\
+    <table class="table">
+        <thead>
+            <tr></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ student.full_name }}</td>
+                <td>{{ student.b_date }}</td>
+                <td>{{ student.ticket_number }}</td>
+                <td>{{ student.group_id.group_number }}</td>
+                <td>
+                    {% thumbnail student.photography "100x145" crop="center" as tm_p %}
+                        <img src="{{ tm_p.url }}" width="{{ tm_p.width }}" height="{{ tm_p.height }}">
+                    {% endthumbnail %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    {% endfor %}
+        <ul class="pager">
+            {% if students.has_previous %}
+                <li>
+                    <a href="?g_num={{g_num}}&page={{ students.previous_page_number }}">Назад</a>
+                </li>
+            {% endif %}
+            <span>Страница {{ students.number }} из {{ students.paginator.num_pages }}.</span>
+            {% if students.has_next %}
+                <li>
+                    <a href="?g_num={{g_num}}&page={{ students.next_page_number }}">Вперед</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+    </div>
+{% endblock %}

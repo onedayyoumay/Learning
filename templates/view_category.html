@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load poll_extras %}
+{% if posts %}
+    <div id="postbox" class="post type-post status-publish format-standard sticky hentry category-about-this-theme postbox">
+        <div class="post_title">
+            <h2>Категория {{ category.title }}</h2>
+        </div>
+    </div>
+    {% for post in posts %}
+    <div id="" class="post type-post status-publish format-standard hentry category-about-this-theme postbox">
+        <div class="postbox2">
+            <div class="postbox3">
+                <div class="post_title">
+                    <h2><a href="{{ post.get_absolute_url }}" rel="bookmark" title="">{{ post.title }}</a></h2>
+                </div>
+                <div class="post_date_author"><span class="post_date">{{ post.posted }}</span><span class="post_author">By <a href="" title="Posts by admin" rel="author">Me</a></span></div>
+                <div class="clear"></div>
+                <div class="entry">
+                    {% filter bbcode %}
+                    {{ post.body }}
+                    {% endfilter %}
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+        <div class="info">
+            <span class="">Запись: <a href="{{ post.get_absolute_url }}" title="" rel="Read more">Читать дальше</a></span>
+            <span class="info_comment"><a href="{{ post.get_absolute_url }}" title="Оставить коментарий">Оставить коментарий</a></span>
+        </div>
+    </div>
+    {% endfor %}
+{% else %}
+    <div id="postbox" class="post type-post status-publish format-standard sticky hentry category-about-this-theme postbox">
+        <div class="post_title">
+            <h2>There are no posts.</h2>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}

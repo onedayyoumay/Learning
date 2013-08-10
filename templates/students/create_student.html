@@ -1,0 +1,5 @@
+{% extends 'students/base.html' %}
+{% block title %}View - создание студента{% endblock %}
+{% block content %}
+{% include "students/form.html" with url="/students/add_student/" form_name="Создать студента" form_button="Создать" enctype='multipart/form-data' %}
+{% endblock %}

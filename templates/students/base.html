@@ -1,0 +1,11 @@
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="{% get_static_prefix %}todo/bootstrap.css" type="text/css" media="all" />
+        <title>{% block title %}View - список студентов группы{% endblock %}</title>
+    </head>
+    <body>
+    {% block content %}
+    {% endblock %}
+    </body>
+</html>
