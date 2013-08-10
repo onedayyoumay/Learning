@@ -1,10 +1,13 @@
 from django.conf.urls.defaults import patterns, include, url
 from django.contrib.comments.views.comments import post_comment, comment_done
 import settings
+from urlmiddleware.conf import middleware, mpatterns
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
-
+middlewarepatterns = mpatterns('',
+    middleware(r'^students/', 'mysite.students.middlewares.CoolMiddleware',),
+)
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'mysite.views.home', name='home'),

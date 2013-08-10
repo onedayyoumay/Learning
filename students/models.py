@@ -10,10 +10,14 @@ class Student(models.Model):
     b_date = models.DateField()
     ticket_number = models.CharField(max_length=12)
     group_id = models.ForeignKey('Group', related_name='+')
+    def __unicode__(self):
+        return '%s' % self.full_name
 
 class Group(models.Model):
     group_number = models.CharField(max_length=3)
     group_head = models.OneToOneField('Student', related_name='+', blank=True, null=True)
+    def __unicode__(self):
+        return '%s' % self.group_number
 
 class Loggs(models.Model):
     action = models.CharField(max_length=200)
